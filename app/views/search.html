@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h4>Add Ingredients</h4>
+        <p>Dummy text</p>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <input type="text" ng-model="selected" typeahead="name.name for name in ingredients | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="addIngredients($item)">
+    </div>
+</div>

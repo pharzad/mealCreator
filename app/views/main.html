@@ -1,0 +1,32 @@
+<div class="jumbotron"></div>
+<input type="text" ng-change="changeMeal()" ng-model="meal.name" style="border: 0;font-size: 23px;font-weight: bold;">
+<div class="row">
+    <div class="col-xs-3">
+        <h3>{{a.calories}}</h3>Calories</div>
+    <div class="col-xs-3">
+        <h3>{{a.protein}}</h3>Protein</div>
+    <div class="col-xs-3">
+        <h3>{{a.fat}}</h3>Fat</div>
+    <div class="col-xs-3">
+        <h3>{{a.carbs}}</h3>Carbs</div>
+</div>
+<accordion close-others="oneAtATime">
+    <accordion-group is-open="status.isFirstOpen">
+        <accordion-heading>
+            Ingredients(Required) <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.isFirstOpen}"></i>
+        </accordion-heading>
+        <div ng-repeat="ingrediet in meal.ingrediets" style="height: 50px;"><b style="font-size: 18px;">{{ingrediet.name}}</b>
+            <input type="number" ng-model="ingrediet.volume" ng-change="changeMeal()" style="width:50px; float: right; vertical-align: top" min="0" />
+        </div>
+        <div ng-click="addIngredient()" ng-if="meal.ingrediets.length!==0"> <i class="glyphicon glyphicon-plus-sign"></i> Add More Ingredients </div>
+        <div ng-click="addIngredient()" ng-if="meal.ingrediets.length===0"> <i class="glyphicon glyphicon-plus-sign"></i> Add first Ingredients </div>
+    </accordion-group>
+    <accordion-group is-open="status.open">
+        <accordion-heading>
+            cooking directions <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+        </accordion-heading>
+    </accordion-group>
+</accordion>
+<button type="button" class="btn btn-default btn-lg btn-block" ng-if="meal.ingrediets.length===0">Exit</button>
+<button type="button" class="btn btn-default btn-lg btn-block" ng-if="meal.ingrediets.length!==0">Save</button>
+<button type="button" class="btn btn-default btn-lg btn-block" ng-if="meal.ingrediets.length!==0" ng-click="deleteMeal()">Delete</button>
